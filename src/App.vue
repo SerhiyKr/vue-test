@@ -1,28 +1,35 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <v-app>
+      <SearchInput />
+      <PostsTable />
+      <AboutMe />
+    </v-app>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import PostsTable from './components/PostsTable.vue'
+import SearchInput from './components/SearchInput.vue'
+import AboutMe from './components/AboutMe.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  data: () => {
+    return {
+      dialog: false,
+      postDetailed: {},
+      dialogDetail: false
+    }
+  },
+  methods: {
+    modalOpen (post) {
+      this.postDetailed = post
+      this.dialogDetail = !this.dialogDetail
+      console.log(this.dialogDetail)
+    }
+  },
+  components: { PostsTable, SearchInput, AboutMe }
 }
 </script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
