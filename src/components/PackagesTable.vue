@@ -3,7 +3,7 @@
       <v-simple-table>
         <template v-slot:default>
           <TableHead />
-          <TableBody v-bind:paginatedPosts="paginatedPosts" />
+          <TableBody v-bind:paginatedPackages="paginatedPackages" />
         </template>
       </v-simple-table>
       <div class="text-center">
@@ -22,36 +22,36 @@ import TableHead from './TableHead.vue'
 import TableBody from './TableBody.vue'
 
 export default {
-  name: 'PostsTable',
+  name: 'PackagesTable',
   data: () => {
     return {
-      postPerPages: 10,
+      packagePerPages: 10,
       pageNumber: 1
     }
   },
   computed: {
-    ...mapGetters(['allPosts']),
-    getSearchedPosts () {
-      return this.$store.getters.getSearchedPosts
+    ...mapGetters(['allPackages']),
+    getSearchedPackages () {
+      return this.$store.getters.getSearchedPackages
     },
     pages () {
-      return Math.ceil(this.getSearchedPosts.length / 10)
+      return Math.ceil(this.getSearchedPackages.length / 10)
     },
-    paginatedPosts () {
-      const from = (this.pageNumber - 1) * this.postPerPages
-      const to = from + this.postPerPages
-      return this.getSearchedPosts.slice(from, to)
+    paginatedPackages () {
+      const from = (this.pageNumber - 1) * this.packagePerPages
+      const to = from + this.packagePerPages
+      return this.getSearchedPackages.slice(from, to)
     }
   },
   methods: {
-    ...mapActions(['fetchPosts']),
-    ...mapMutations(['updatePosts', 'updateSearchedPosts']),
+    ...mapActions(['fetchPackages']),
+    ...mapMutations(['updatePackages', 'updateSearchedPackages']),
     pageClick (value) {
       this.pageNumber = value
     }
   },
   async mounted () {
-    this.fetchPosts()
+    this.fetchPackages()
   },
   components: { TableHead, TableBody }
 }

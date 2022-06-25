@@ -1,22 +1,22 @@
 <template>
   <tbody>
-    <tr v-for="post in paginatedPosts" :key="post.id" @click="modalOpen(post)">
-      <td>{{ post.name }}</td>
-      <td>{{ post.type }}</td>
+    <tr v-for="packageData in paginatedPackages" :key="packageData.id" @click="modalOpen(packageData)">
+      <td>{{ packageData.name }}</td>
+      <td>{{ packageData.type }}</td>
     </tr>
     <v-dialog v-model="dialog" width="500">
       <v-card>
         <v-card-title class="text-h5 grey lighten-2">
-          {{ postInfo.name }}
+          {{ packageInfo.name }}
         </v-card-title>
         <v-card-text>
-          Package type: {{ postInfo.type }}
+          Package type: {{ packageInfo.type }}
         </v-card-text>
         <v-card-text>
-          Hits: {{ postInfo.hits }}
+          Hits: {{ packageInfo.hits }}
         </v-card-text>
         <v-card-text>
-          Bandwidth: {{ postInfo.bandwidth }}
+          Bandwidth: {{ packageInfo.bandwidth }}
         </v-card-text>
         <v-divider></v-divider>
         <v-card-actions>
@@ -33,18 +33,18 @@
 export default {
   name: 'TableBody',
   props: {
-    paginatedPosts: Array
+    paginatedPackages: Array
   },
   data: () => {
     return {
       dialog: false,
-      postInfo: {}
+      packageInfo: {}
     }
   },
   methods: {
-    modalOpen (post) {
+    modalOpen (packageData) {
       this.dialog = true
-      this.postInfo = post
+      this.packageInfo = packageData
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
     <div>
       <v-text-field
-        label="Search posts"
+        label="Search packages"
         v-model="search"
         @input="searchHandler"
       ></v-text-field>
@@ -19,15 +19,15 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['allPosts', 'getSearchedPosts'])
+    ...mapGetters(['allPackages', 'getSearchedPackagess'])
   },
   methods: {
-    ...mapMutations(['updatePosts', 'updateSearchedPosts']),
+    ...mapMutations(['updatePackages', 'updateSearchedPackages']),
     searchHandler () {
-      const balanceFilter = this.allPosts.filter((post) =>
-        post.name.includes(this.search)
+      const balanceFilter = this.allPackages.filter((packageData) =>
+        packageData.name.includes(this.search)
       )
-      this.updateSearchedPosts(balanceFilter)
+      this.updateSearchedPackages(balanceFilter)
       this.pageNumber = 1
     }
   }

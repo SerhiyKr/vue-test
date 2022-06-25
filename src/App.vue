@@ -2,7 +2,7 @@
   <div id="app">
     <v-app>
       <SearchInput />
-      <PostsTable />
+      <PackagesTable />
       <AboutMe />
     </v-app>
   </div>
@@ -10,26 +10,12 @@
 
 <script>
 
-import PostsTable from './components/PostsTable.vue'
+import PackagesTable from './components/PackagesTable.vue'
 import SearchInput from './components/SearchInput.vue'
 import AboutMe from './components/AboutMe.vue'
 
 export default {
   name: 'App',
-  data: () => {
-    return {
-      dialog: false,
-      postDetailed: {},
-      dialogDetail: false
-    }
-  },
-  methods: {
-    modalOpen (post) {
-      this.postDetailed = post
-      this.dialogDetail = !this.dialogDetail
-      console.log(this.dialogDetail)
-    }
-  },
-  components: { PostsTable, SearchInput, AboutMe }
+  components: { PackagesTable, SearchInput, AboutMe }
 }
 </script>
